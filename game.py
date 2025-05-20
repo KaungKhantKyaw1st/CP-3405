@@ -13,6 +13,12 @@ LINE_COLOR = (23, 145, 135)
 # Create the display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Tic Tac Toe")
+FONT = pygame.font.SysFont(None, 40)
+
+def draw_points(player1, player2):
+    text = FONT.render(f"X: {player1}  O: {player2}", True, (255, 255, 255))
+    screen.blit(text, (20, 10))
+
 
 # Draw the board
 def draw_board():
@@ -25,6 +31,8 @@ def draw_board():
     pygame.draw.line(screen, LINE_COLOR, (0, 400), (600, 400), LINE_WIDTH)
 
 draw_board()
+draw_points(0, 0)
+
 
 # Main loop
 while True:
