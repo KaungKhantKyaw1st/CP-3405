@@ -60,6 +60,23 @@ draw_marks()
 
 player = 'X'
 
+def check_win(player):
+    for row in board:
+        if all([spot == player for spot in row]):
+            return True
+    for col in range(BOARD_COLS):
+        if all([board[row][col] == player for row in range(BOARD_ROWS)]):
+            return True
+    if all([board[i][i] == player for i in range(BOARD_ROWS)]):
+        return True
+    if all([board[i][BOARD_ROWS - i - 1] == player for i in range(BOARD_ROWS)]):
+        return True
+    return False
+if check_win('X'):
+    print("Player X wins!")
+elif check_win('O'):
+    print("Player O wins!")
+
 
 # Main loop
 while True:
@@ -79,6 +96,8 @@ while True:
         if board[clicked_row][clicked_col] is None:
             board[clicked_row][clicked_col] = player
             player = 'O' if player == 'X' else 'X'
+
+
 
 
 
