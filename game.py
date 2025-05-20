@@ -54,6 +54,12 @@ def draw_board():
 draw_board()
 draw_points(0, 0)
 
+draw_board()
+draw_points(0, 0)
+draw_marks()
+
+player = 'X'
+
 
 # Main loop
 while True:
@@ -62,6 +68,18 @@ while True:
             pygame.quit()
             sys.exit()
     pygame.display.update()
+
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        mouseX = event.pos[0]
+        mouseY = event.pos[1]
+
+        clicked_row = mouseY // SQUARE_SIZE
+        clicked_col = mouseX // SQUARE_SIZE
+
+        if board[clicked_row][clicked_col] is None:
+            board[clicked_row][clicked_col] = player
+            player = 'O' if player == 'X' else 'X'
+
 
 
 
