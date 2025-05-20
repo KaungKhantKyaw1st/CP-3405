@@ -1,6 +1,27 @@
 import pygame
 import sys
 
+BOARD_ROWS = 3
+BOARD_COLS = 3
+SQUARE_SIZE = WIDTH // 3
+board = [[None for _ in range(BOARD_COLS)] for _ in range(BOARD_ROWS)]
+
+def draw_marks():
+    for row in range(BOARD_ROWS):
+        for col in range(BOARD_COLS):
+            if board[row][col] == 'X':
+                pygame.draw.line(screen, (66, 66, 66), 
+                                 (col * SQUARE_SIZE + 55, row * SQUARE_SIZE + 55), 
+                                 (col * SQUARE_SIZE + SQUARE_SIZE - 55, row * SQUARE_SIZE + SQUARE_SIZE - 55), 25)
+                pygame.draw.line(screen, (66, 66, 66), 
+                                 (col * SQUARE_SIZE + 55, row * SQUARE_SIZE + SQUARE_SIZE - 55), 
+                                 (col * SQUARE_SIZE + SQUARE_SIZE - 55, row * SQUARE_SIZE + 55), 25)
+            elif board[row][col] == 'O':
+                pygame.draw.circle(screen, (239, 231, 200), 
+                                   (col * SQUARE_SIZE + SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2), 
+                                   SQUARE_SIZE//3, 15)
+
+
 # Initialize pygame
 pygame.init()
 
@@ -41,3 +62,6 @@ while True:
             pygame.quit()
             sys.exit()
     pygame.display.update()
+
+
+
